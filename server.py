@@ -1,5 +1,6 @@
 import os
 import json
+import re
 from flask import Flask, request, jsonify, Response, stream_with_context
 from flask_cors import CORS
 from groq import Groq
@@ -230,7 +231,6 @@ def chat():
                     messages=[{"role": "user", "content": split_prompt}],
                     model="llama-3.1-8b-instant", temperature=0
                 )
-                import re, json
                 raw = split_res.choices[0].message.content.strip()
                 if raw.startswith("```"): raw = re.sub(r"^```(?:json)?|```$", "", raw).strip()
                 queries = json.loads(raw)

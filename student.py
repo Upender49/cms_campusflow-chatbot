@@ -60,7 +60,6 @@ schemas = {k: generate_schema_skeleton(v) for k, v in collections.items()}
 client_groq = Groq(api_key=GROQ_API_KEY)
 
 # --- 4. PHASE 1: PIPELINE GENERATOR ---
-# --- 4. PHASE 1: PIPELINE GENERATOR ---
 def text_to_mongo_pipeline(user_question, user_meta=None):
     # Security block removed - rely on Read-Only MongoDB User instead
     system_prompt = f"""
@@ -122,7 +121,7 @@ def text_to_mongo_pipeline(user_question, user_meta=None):
         if raw_content.startswith("```"):
             raw_content = re.sub(r"^```(?:json)?|```$", "", raw_content).strip()
             
-        # DEBUG PRINT
+        
         print(f"\n[DEBUG] --- Phase 1: Raw AI Pipeline Output ---")
         print(raw_content)
         print("-" * 50)
